@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 
 import { signup, login, getUserName } from './Controllers/authController.js';
+import { addToCart, getCartByUserId, removeFromCart, clearCart } from './Controllers/cartController.js';
+import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from "./Controllers/productController.js";
 
 
 const app = express();
@@ -28,6 +30,21 @@ mongoose.connect(uri)
 app.post('/signup', signup);
 app.post('/login', login);
 app.get('/username/:userId', getUserName);
+
+
+// Product Routes
+app.get('/products', getAllProducts);
+app.get('/products/:id', getProductById);
+app.post('/products', createProduct);
+app.put('/products/:id', updateProduct);
+app.delete('/products/:id', deleteProduct);
+
+
+// Cart Routes
+app.post('/cart', addToCart);
+app.get('/cart/:userId', getCartByUserId);
+app.delete('/cart', removeFromCart);
+app.post('/cart/clear', clearCart);
 
 
 
