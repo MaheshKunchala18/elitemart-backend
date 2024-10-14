@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import { signup, login, getUserName } from './Controllers/authController.js';
 import { addToCart, getCartByUserId, removeFromCart, clearCart } from './Controllers/cartController.js';
 import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from "./Controllers/productController.js";
+import { addOrder, getOrdersByUser } from './Controllers/orderController.js';
 
 
 const app = express();
@@ -45,6 +46,11 @@ app.post('/cart', addToCart);
 app.get('/cart/:userId', getCartByUserId);
 app.delete('/cart', removeFromCart);
 app.post('/cart/clear', clearCart);
+
+
+// Order Routes
+app.post('/orders', addOrder);
+app.get('/orders/:userId', getOrdersByUser);
 
 
 
