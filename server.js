@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 
 import { signup, login, getUserName } from './Controllers/authController.js';
+import { getCategories } from "./Controllers/categoryController.js";
 import { addToCart, getCartByUserId, removeFromCart, clearCart } from './Controllers/cartController.js';
 import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from "./Controllers/productController.js";
 import { addOrder, getOrdersByUser } from './Controllers/orderController.js';
@@ -31,6 +32,10 @@ mongoose.connect(uri)
 app.post('/signup', signup);
 app.post('/login', login);
 app.get('/username/:userId', getUserName);
+
+
+// Category Routes
+app.get('/categories', getCategories);
 
 
 // Product Routes
