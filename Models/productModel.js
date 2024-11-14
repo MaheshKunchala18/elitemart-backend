@@ -6,8 +6,12 @@ const productSchema = new mongoose.Schema({
         required: true,
         maxlength: 100
     },
-    imageUrl: {
+    thumbnail: {
         type: String,
+        required: true
+    },
+    images: {
+        type: [String],
         required: true
     },
     originalPrice: {
@@ -35,7 +39,6 @@ const productSchema = new mongoose.Schema({
         required: true
     }
 }, { collection: 'products' });
-
 
 const Product = mongoose.model('Product', productSchema);
 
