@@ -80,11 +80,13 @@ export const clearCart = async (req, res) => {
             return res.status(404).json({ message: 'Cart not found' });
         }
 
-        cart.items = [];
-        const clearedCart = await cart.save();
-        res.status(200).json({ message: 'Cart cleared', cart: clearedCart });
+        // Delete the cart document for the user
+        await Cart.deleteOne({ userId });
+
+        res.status(200).json({ message: 'Cart cleared' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Error clearing cart' });
     }
 };
+
