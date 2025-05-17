@@ -9,6 +9,7 @@ import { getCategories } from "./Controllers/categoryController.js";
 import { addToCart, getCartByUserId, removeFromCart, clearCart } from './Controllers/cartController.js';
 import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from "./Controllers/productController.js";
 import { addOrder, getOrdersByUser } from './Controllers/orderController.js';
+import { addToWishlist, getWishlistByUser, removeFromWishlist, clearWishlist } from './Controllers/wishlistController.js';
 
 
 const app = express();
@@ -57,6 +58,12 @@ app.post('/cart/clear', clearCart);
 app.post('/orders', addOrder);
 app.get('/orders/:userId', getOrdersByUser);
 
+
+// Wishlist Routes
+app.post('/wishlist', addToWishlist);
+app.get('/wishlist/:userId', getWishlistByUser);
+app.delete('/wishlist', removeFromWishlist);
+app.post('/wishlist/clear', clearWishlist);
 
 
 app.listen(port, () => {
